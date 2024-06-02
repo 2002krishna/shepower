@@ -1,0 +1,72 @@
+{% extends "home.html" %}
+
+{% block extra_css %}
+<style>
+.form-container {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+.form-container::-webkit-scrollbar {
+    display: none;
+}
+
+.form-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea,
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #003d80;
+}
+
+h1 {
+    font-family: 'Russo One', sans-serif;
+    color: #00a3cc;
+}
+
+label {
+    font-family: 'Source Sans 3', sans-serif;
+    color: #000000;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Product</h1>
+    <form method="post" action="{% url 'employee_home' %}?data_to_send={{ user.username }}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'employee_home' %}" class="btn btn-primary">Submit</a>
+    </form>
+{% endblock %}
